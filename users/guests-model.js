@@ -26,7 +26,7 @@ function findById(id) {
         .first()
 }
 
-function update(change, id) {
+function update(changes, id) {
     return db("guest")
         .where({ id })
         .update(changes)
