@@ -22,7 +22,7 @@ server.use("/api/auth", authRouter)
 server.use("/api/users",authenticate, usersRouter)
 server.use("/api/potlucks", potluckRouter)
 server.use("/api/items", itemRouter)
-server.use("/api/guest", guestRouter)
+server.use("/api/guests", guestRouter)
 
 
 server.get("/", (req, res) => {
