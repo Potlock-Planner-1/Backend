@@ -19,8 +19,8 @@ server.use(express.json());
 
 server.use("/api/auth", authRouter)
 server.use("/api/users",authenticate, usersRouter)
-// server.use("/api/potlucks", potluckRouter)
-// server.use ("/api/items", itemRouter)
+server.use("/api/potlucks", potluckRouter)
+server.use ("/api/items", itemRouter)
 
 
 server.get("/", (req, res) => {
