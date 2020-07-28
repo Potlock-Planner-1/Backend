@@ -44,12 +44,12 @@ router.get("/:id", (req, res) => {
 
 router.put("/:id", (req, res) => {
     const { id } = req.params
-    const change = req.body
+    const changes = req.body
 
     Potluck.findById(id)
         .then(potluck => {
-            if(potLuck){
-                Potluck.update(change, id)
+            if(potluck){
+                Potluck.update(changes, id)
                     .then(updatePotluck => {
                         res.status(200).json(updatePotluck)
                     })

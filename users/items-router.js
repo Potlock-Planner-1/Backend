@@ -44,12 +44,12 @@ router.get("/:id", (req, res) => {
 
 router.put("/:id", (req, res) => {
     const { id } = req.params
-    const change = req.body
+    const changes = req.body
 
     Items.findById(id)
         .then(item => {
             if(item){
-                Items.update(change, id)
+                Items.update(changes, id)
                     .then(updateItem => {
                         res.status(200).json(updateItem)
                     })
