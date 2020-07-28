@@ -6,11 +6,11 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('guest').insert([
-        {id: 1, name: 'joe'},
-        {id: 2, name: 'marina'},
-        {id: 3, name: 'mars'},
-        {id: 4, name: 'parimala'},
-        {id: 5, name: 'prakash'},
+        { name: 'joe'},
+        { name: 'marina'},
+        { name: 'mars'},
+        { name: 'parimala'},
+        { name: 'prakash'},
       ]);
     });
 };
