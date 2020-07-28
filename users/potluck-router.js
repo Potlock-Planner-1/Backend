@@ -33,11 +33,15 @@ router.get("/:id", (req, res) => {
 
     Potluck.findById(id)
         .then(potluck => {
-            res.status(200).json(potluck)
+            if(potluck) {
+                res.status(200).json(potluck)
+            }else {
+                res.status(404).json({message: "potluck with the ID does not exists"})
+            }
         })
         .catch(error => {
             console.log(error)
-            res.status(500).json({message: "potluck with the ID does not exists"})
+            res.status(500).json({message: "failed to get potlucks"})
         })
 })
 
@@ -51,7 +55,7 @@ router.put("/:id", (req, res) => {
             if(potluck){
                 Potluck.update(changes, id)
                     .then(updatePotluck => {
-                        res.status(200).json(updatePotluck)
+                        res.status(200).json({message: "potluck updated", id})
                     })
             }else {
                 res.status(404).json({message: "potluck with id can not be found"})
@@ -69,7 +73,7 @@ router.delete('/:id', (req, res) => {
     Potluck.remove(id)
         .then(potluck => {
         if (potluck) {
-            res.status(204).json({ removed: deleted});
+            res.json({ removed: potluck, id });
         } else {
             res.status(404).json({ message: 'potluck with id could not be found' });
         }

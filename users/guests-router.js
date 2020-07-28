@@ -13,7 +13,7 @@ router.post("/", (req, res) => {
             res.status(200).json(guest)
         })
         .then(error => {
-            res.status(500).json({message: "failed to create a new item"})
+            res.status(500).json({message: "failed to create a new guest"})
         })
 
 })
@@ -24,7 +24,7 @@ router.get("/", (req, res) => {
         res.status(200).json(guests)
     })
     .catch(error => {
-        res.status(500).json({ message: " items data can not be retrieved"})
+        res.status(500).json({ message: " guests data can not be retrieved"})
     })
 })
 
@@ -33,11 +33,15 @@ router.get("/:id", (req, res) => {
 
     Guests.findById(id)
         .then(guest => {
-            res.status(200).json(guest)
+            if(guest){
+               res.status(200).json(guest) 
+            } else {
+                res.status(404).json({message: "can not find guest with given id"})
+            }
         })
         .catch(error => {
             console.log(error)
-            res.status(500).json({message: "item with the ID does not exists"})
+            res.status(500).json({message: "failed to get gest"})
         })
 })
 
@@ -51,7 +55,7 @@ router.put("/:id", (req, res) => {
             if(guest){
                 Guests.update(changes, id)
                     .then(updateGuest => {
-                        res.status(200).json(updateGuest)
+                        res.status(200).json({message: "guest name updated", id})
                     })
             }else {
                 res.status(404).json({message: "item with id can not be found"})
@@ -63,15 +67,15 @@ router.put("/:id", (req, res) => {
 })
 
 
-router.delete('/:id', (req, res) => {
+router.delete("/:id", (req, res) => {
     const { id } = req.params
 
     Guests.remove(id)
         .then(guest => {
         if (guest) {
-            res.status(204).json({ removed: deleted});
+            res.json({  removed: guest, id});
         } else {
-            res.status(404).json({ message: 'item with id could not be found' });
+            res.status(404).json({ message: "item with id could not be found" });
         }
         })
         .catch(error => {

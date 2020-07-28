@@ -33,11 +33,15 @@ router.get("/:id", (req, res) => {
 
     Items.findById(id)
         .then(item => {
-            res.status(200).json(item)
+            if(item){
+                res.status(200).json(item)
+            } else {
+                res.status(404).json({message: "item with the ID does not exists"})
+            }
         })
         .catch(error => {
             console.log(error)
-            res.status(500).json({message: "item with the ID does not exists"})
+            res.status(500).json({message: "failed to get item"})
         })
 })
 
@@ -51,7 +55,7 @@ router.put("/:id", (req, res) => {
             if(item){
                 Items.update(changes, id)
                     .then(updateItem => {
-                        res.status(200).json(updateItem)
+                        res.status(200).json({message: "item updated", id})
                     })
             }else {
                 res.status(404).json({message: "item with id can not be found"})
@@ -68,11 +72,11 @@ router.delete('/:id', (req, res) => {
 
     Items.remove(id)
         .then(item => {
-        if (item) {
-            res.status(204).json({ removed: deleted});
-        } else {
-            res.status(404).json({ message: 'item with id could not be found' });
-        }
+            if (item) {
+                res.json({message: "item deleted", id});
+            } else {
+                res.status(404).json({ message: 'item with id could not be found' });
+            }
         })
         .catch(error => {
             res.status(500).json({ message: "failed to delete the item"});
