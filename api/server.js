@@ -7,6 +7,7 @@ const authRouter = require("../auth/auth-router.js");
 const usersRouter = require("../users/users-router.js");
 const potluckRouter = require("../users/potluck-router.js");
 const itemRouter = require("../users/items-router.js");
+const guestRouter = require("../users/guests-router.js")
 
 const authenticate = require("../auth/authenticate-middleware.js");
 
@@ -20,7 +21,8 @@ server.use(express.json());
 server.use("/api/auth", authRouter)
 server.use("/api/users",authenticate, usersRouter)
 server.use("/api/potlucks", potluckRouter)
-server.use ("/api/items", itemRouter)
+server.use("/api/items", itemRouter)
+server.use("/api/guest", guestRouter)
 
 
 server.get("/", (req, res) => {
