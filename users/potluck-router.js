@@ -79,4 +79,4 @@ router.delete('/:id', (req, res) => {
         });
   });
   
-  module.exports = server;
+  module.exports = router;
