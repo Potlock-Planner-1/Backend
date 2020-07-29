@@ -43,3 +43,12 @@ Base URL: https://potluckplanner1.herokuapp.com
                     "user_id": 2
                   }
              ]``` 
+             
+  ### Auth Routs
+Table  |  Method   |   Endpoint          |   Description
+-------|-----------|---------------------|----------------------------
+users  |  POST     |  /api/auth/register |   registers a new user
+users  |  Post     |  /api/auth/login    |   logs in if already registered
+
+
+
