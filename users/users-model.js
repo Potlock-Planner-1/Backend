@@ -7,7 +7,7 @@ module.exports = {
     add,
     addPotlucks,
     update,
-    updatePotlucks,
+    // updatePotlucks,
     remove
 }
 
