@@ -50,5 +50,7 @@ Table  |  Method   |   Endpoint          |   Description
 users  |  POST     |  /api/auth/register |   registers a new user
 users  |  Post     |  /api/auth/login    |   logs in if already registered
 
+### Register
+Method URL: /api/auth/register
 
 
