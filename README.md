@@ -2,7 +2,10 @@
 Base URL: https://potluckplanner1.herokuapp.com
 
 ### Dummy data
-```register: [
+
+
+```
+  register: [
                 {
                     "username": "one",
                     "password": "one"
@@ -42,4 +45,8 @@ Base URL: https://potluckplanner1.herokuapp.com
                     "location": "california",
                     "user_id": 2
                   }
-             ]``` 
+             ]
+``` 
+### Auth Routs
+-----------------------------------------------------
+Table||Method||Endpoint|| Description||

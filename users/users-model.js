@@ -26,7 +26,7 @@ function findPotlucks(potlucks_id) {
     console.log(potlucks_id, "potlucks_id")
     return db("users as u")
         .join("potluck as p", "p.user_id", "u.id" )
-        .select("u.username", "p.id", "p.time", "p.date", "p.location")
+        .select("u.username", "p.name", "p.id", "p.time", "p.date", "p.location")
         .where("u.id", potlucks_id)
         .orderBy("p.id")
 }
