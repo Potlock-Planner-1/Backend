@@ -51,7 +51,7 @@ exports.up = function(knex) {
           potluckTbl.string("location", 256)
                   .notNullable()
   
-          potluckTbl.string("host", 256)
+          potluckTbl.integer("user_id")
                   .unsigned()
                   .references("id")
                   .inTable("users")
