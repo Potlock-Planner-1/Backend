@@ -65,13 +65,12 @@ router.post("/:id/potlucks", (req, res) => {
     const { id } = req.params; 
     potluckInfo.user_id = id
 
-
     Users.findById(id)
     .then(user => {
       if (user) {
         Users.addPotlucks(potluckInfo, id)
         .then(potluck => {
-          res.status(201).json(potluck);
+          res.status(201).json({potluck, message: "potluck posted"});
         })
       } else {
         res.status(404).json({ message: "Could not find Users with given id." })
