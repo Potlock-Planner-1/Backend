@@ -7,6 +7,7 @@ module.exports = {
     add,
     addPotlucks,
     update,
+    updatePotlucks,
     remove
 }
 
@@ -59,6 +60,15 @@ function update(changes, id) {
             return findById(id);
         });
 }
+
+// function updatePotlucks(changes, id){
+//     return db("potluck")
+//     .where({ id })
+//     .update(changes)
+//     .then(() => {
+//         return findById(id);
+//     });
+// }
 
 //<:<:<:<:<:<: DELETE :>:>:>:>:>:>\\
 
