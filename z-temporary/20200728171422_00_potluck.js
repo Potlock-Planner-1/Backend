@@ -32,6 +32,14 @@ exports.up = function(knex) {
           guestTbl.string("name", 256)
               .notNullable()
               .unique() 
+              
+          guestTbl.integer("potluck_id")
+              .unsigned()
+              .references("id")
+              .inTable("potluck")
+              .notNullable()
+              .onUpdate("CASCADE")
+              .onDelete("CASCADE")
       })
   
   
@@ -51,7 +59,7 @@ exports.up = function(knex) {
           potluckTbl.string("location", 256)
                   .notNullable()
   
-          potluckTbl.string("host", 256)
+          potluckTbl.integer("user_id")
                   .unsigned()
                   .references("id")
                   .inTable("users")
