@@ -2,7 +2,7 @@
 Base URL: https://potluckplanner1.herokuapp.com
 
 ### Dummy data
-register: [
+```register: [
                 {
                     "username": "one",
                     "password": "one"
@@ -42,4 +42,4 @@ register: [
                     "location": "california",
                     "user_id": 2
                   }
-             ] 
+             ]``` 
