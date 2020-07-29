@@ -64,7 +64,8 @@ router.post("/:id/potlucks", (req, res) => {
     const potluckInfo = req.body;
     const { id } = req.params; 
     potluckInfo.user_id = id
-  console.log(potluckInfo, "potluckInfo")//just checking
+
+
     Users.findById(id)
     .then(user => {
       if (user) {
