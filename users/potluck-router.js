@@ -32,7 +32,7 @@ router.get("/:id", (req, res) => {
         })
 })
 
-router.get('/:id/items', (req, res) => {
+router.get("/:id/items", (req, res) => {
     const { id } = req.params;
   
     Potluck.findItem(id)
@@ -40,15 +40,15 @@ router.get('/:id/items', (req, res) => {
       if (items.length) {
         res.json(items);
       } else {
-        res.status(404).json({ message: 'Could not find items for given scheme' })
+        res.status(404).json({ message: "Could not find items for given scheme" })
       }
     })
     .catch(err => {
-      res.status(500).json({ message: 'Failed to get items' });
+      res.status(500).json({ message: "Failed to get items" });
     });
 });
 
-router.get('/:id/guests', (req, res) => {
+router.get("/:id/guests", (req, res) => {
     const { id } = req.params;
   
     Potluck.findGuest(id)
@@ -56,11 +56,11 @@ router.get('/:id/guests', (req, res) => {
       if (guests.length) {
         res.json(guests);
       } else {
-        res.status(404).json({ message: 'Could not find guests for given scheme' })
+        res.status(404).json({ message: "Could not find guests for given scheme" })
       }
     })
     .catch(err => {
-      res.status(500).json({ message: 'Failed to get guests' });
+      res.status(500).json({ message: "Failed to get guests" });
     });
 });
 
@@ -77,43 +77,45 @@ router.post("/", (req, res) => {
 
 })
 
-router.post('/:id/items', (req, res) => {
+router.post("/:id/items", (req, res) => {
     const itemData = req.body;
-    const { id } = req.params; 
+    const { id } = req.params;
+    itemData.potluck_id = id 
   
     Potluck.findById(id)
     .then(potluck => {
       if (potluck) {
         Potluck.addItem(itemData, id)
         .then(item => {
-          res.status(201).json(item);
+          res.status(201).json({item, message: "new item is added to the potluck"});
         })
       } else {
-        res.status(404).json({ message: 'Could not find potluck with given id.' })
+        res.status(404).json({ message: "Could not find potluck with given id." })
       }
     })
     .catch (err => {
-      res.status(500).json({ message: 'Failed to post new item' });
+      res.status(500).json({ message: "Failed to post new item" });
     });
 });
 
-router.post('/:id/guests', (req, res) => {
+router.post("/:id/guests", (req, res) => {
     const guestData = req.body;
     const { id } = req.params; 
+    guestData.potluck_id = id
   
     Potluck.findById(id)
     .then(potluck => {
       if (potluck) {
         Potluck.addGuest(guestData, id)
         .then(guest => {
-          res.status(201).json(guest);
+          res.status(201).json({guest, message: "new guest is added"});
         })
       } else {
-        res.status(404).json({ message: 'Could not find potluck with given id.' })
+        res.status(404).json({ message: "Could not find potluck with given id." })
       }
     })
     .catch (err => {
-      res.status(500).json({ message: 'Failed to post new guest' });
+      res.status(500).json({ message: "Failed to post new guest" });
     });
 });
 
@@ -139,7 +141,7 @@ router.put("/:id", (req, res) => {
 })
 
 
-router.delete('/:id', (req, res) => {
+router.delete("/:id", (req, res) => {
     const { id } = req.params
 
     Potluck.remove(id)
@@ -147,7 +149,7 @@ router.delete('/:id', (req, res) => {
         if (potluck) {
             res.json({ removed: potluck, id });
         } else {
-            res.status(404).json({ message: 'potluck with id could not be found' });
+            res.status(404).json({ message: "potluck with id could not be found" });
         }
         })
         .catch(error => {

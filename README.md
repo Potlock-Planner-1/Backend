@@ -45,14 +45,10 @@ Base URL: https://potluckplanner1.herokuapp.com
                     "location": "california",
                     "user_id": 2
                   }
-<<<<<<< HEAD
+
              ]
+             
 ``` 
-### Auth Routs
------------------------------------------------------
-Table||Method||Endpoint|| Description||
-=======
-             ]``` 
              
   ### Auth Routs
 Table  |  Method   |   Endpoint          |   Description
