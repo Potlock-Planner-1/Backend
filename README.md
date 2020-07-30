@@ -98,10 +98,10 @@ HTTP Method: [GET] (allow us to get list of users)
 #### URL: /api/users
 
 #### Headers
-    Name	        | Type	     | Required	     | Description
-    ----------------|------------|---------------|-----------------
-    Content-Type	| String	 | Yes	         | Must be application/JSON
-    Authorization	| String	 | Yes	         | JSON Web Token
+Name	        | Type	     | Required	     | Description
+----------------|------------|---------------|-----------------
+Content-Type	| String	 | Yes	         | Must be application/JSON
+Authorization	| String	 | Yes	         | JSON Web Token
 
 ### example
     ```

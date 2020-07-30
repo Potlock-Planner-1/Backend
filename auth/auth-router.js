@@ -72,7 +72,7 @@ function makeJwt(user) {
     const secret = process.env.JWT_SECRET || "is it secret, is it safe?";
 
     const options = {
-        expiresIn: "1h",
+        expiresIn: "1d",
     };
 
     return jwt.sign(payload, secret, options);

@@ -28,7 +28,7 @@ function findPotlucks(potlucks_id) {
     return db("users as u")
         .join("potluck as p", "p.user_id", "u.id" )
         .select("u.username", "p.name", "p.id", "p.time", "p.date", "p.location")
-        .where("u.id", potlucks_id)
+        .where("p.id", potlucks_id)
         .orderBy("p.id")
 }
 
@@ -43,9 +43,11 @@ function add(user) {
 }
 
 function addPotlucks(potluck, user_id) {
+    console.log(potluck, "POTLUCKKKKKK")
     return db("potluck")
         .insert(potluck, user_id)
         .then(ids => {
+            console.log(ids, "IDs IDs IDs")
             return findPotlucks(ids[0])
         })
 }

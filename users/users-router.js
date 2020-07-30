@@ -61,16 +61,20 @@ router.post("/", (req, res) => {
 });
 
 router.post("/:id/potlucks", (req, res) => {
-    const potluckInfo = req.body;
+    // const potluckInfo = req.body;
     const { id } = req.params; 
-    potluckInfo.user_id = id
+    req.body.user_id = id
+console.log(req.body, "req.body")
 
     Users.findById(id)
     .then(user => {
       if (user) {
-        Users.addPotlucks(potluckInfo)
-        .then(potluck => {
-            res.status(201).json({potluck});          
+        Users.addPotlucks(req.body, id)
+        .then(([potluck]) => {
+            res.status(201).json({ potluck, message: "potluck has been added"});          
+        })
+        .catch(error => {
+            res.json({message: "potluck not added"})
         })
       }else {
          res.status(404).json({ message: "Could not find Users with given id." })
