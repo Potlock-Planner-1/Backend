@@ -7,6 +7,7 @@ module.exports = {
     add,
     addPotlucks,
     update,
+    // updatePotlucks,
     remove
 }
 
@@ -26,7 +27,7 @@ function findPotlucks(potlucks_id) {
     console.log(potlucks_id, "potlucks_id")
     return db("users as u")
         .join("potluck as p", "p.user_id", "u.id" )
-        .select("u.username", "p.id", "p.time", "p.date", "p.location")
+        .select("u.username", "p.name", "p.id", "p.time", "p.date", "p.location")
         .where("u.id", potlucks_id)
         .orderBy("p.id")
 }
@@ -59,6 +60,15 @@ function update(changes, id) {
             return findById(id);
         });
 }
+
+// function updatePotlucks(changes, id){
+//     return db("potluck")
+//     .where({ id })
+//     .update(changes)
+//     .then(() => {
+//         return findById(id);
+//     });
+// }
 
 //<:<:<:<:<:<: DELETE :>:>:>:>:>:>\\
 

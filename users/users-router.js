@@ -63,17 +63,18 @@ router.post("/", (req, res) => {
 router.post("/:id/potlucks", (req, res) => {
     const potluckInfo = req.body;
     const { id } = req.params; 
-  
+    potluckInfo.user_id = id
+
     Users.findById(id)
     .then(user => {
       if (user) {
-        Users.addPotluck(potluckInfo, id)
+        Users.addPotlucks(potluckInfo)
         .then(potluck => {
-          res.status(201).json(potluck);
+            res.status(201).json({potluck});          
         })
-      } else {
-        res.status(404).json({ message: "Could not find Users with given id." })
-      }
+      }else {
+         res.status(404).json({ message: "Could not find Users with given id." })
+      }              
     })
     .catch (err => {
       res.status(500).json({ message: "Failed to create new potluck" });
@@ -101,6 +102,26 @@ router.put("/:id", (req, res) => {
       res.status(500).json({ message: "Failed to update user" });
     });
 });
+
+// router.put("/:id/potlucks/:id", (req, res) => {
+//     const { id } = req.params;
+//     const changes = req.body;
+  
+//     Users.findById(id)
+//     .then(user => {
+//       if (user) {
+//         Users.update(changes, id)
+//         .then(updatedUser => {
+//           res.json({message: "user updated", id});
+//         });
+//       } else {
+//         res.status(404).json({ message: "Could not find user with given id" });
+//       }
+//     })
+//     .catch (err => {
+//       res.status(500).json({ message: "Failed to update user" });
+//     });
+// });
 
 //<:<:<:<:<:<: DELETE :>:>:>:>:>:>\\
 
