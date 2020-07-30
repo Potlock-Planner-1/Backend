@@ -1,71 +1,28 @@
 # Backend
 ## Base URL: https://potluckplanner1.herokuapp.com
-
-### Dummy data
-
-```
-  register: [
-                {
-                    "username": "one",
-                    "password": "one"
-                }
-            ]
             
-  Login:    [   
-                {
-                    "username": "one",
-                    "password": "one"
-                }
-            ]  
-  potlucks: [
-                {
-                    "id": 1,
-                    "name": "joe's potluck",
-                    "date": "08-01-2020",
-                    "time": "9:00",
-                    "location": "california",
-                    "user_id": 1
-                 }
-            ] 
-  items:    [
-                {
-                    "id": 45,
-                    "item_name": "pasta",
-                    "claimed": 1,
-                    "potluck_id": 1
-                }
-            ]  
-  guests:   [ 
-                 {
-                    "id": 2,
-                    "name": "marina's potluck",
-                    "date": "08-01-2020",
-                    "time": "9:00",
-                    "location": "california",
-                    "user_id": 2
-                  }
-
-             ]
-             
-``` 
-             
-  ### Auth Routs
+  ### Auth Routs:  /api/auth/register && /api/auth/login 
+ 
 Table  |  Method   |   Endpoint          |   Description
 -------|-----------|---------------------|---------------------------------
 users  |  POST     |  /api/auth/register |   registers a new user
 users  |  POST     |  /api/auth/login    |   logs in if already registered
--------|-----------|---------------------|---------------------------------
 
 ## Register
-HTTP Method: [POST],
-URL: /api/auth/register
+HTTP Method: [POST] (registers new users)
+#### URL: /api/auth/register
+
+#### Headers
+Name	        | Type	     | Required	     | Description
+----------------|------------|---------------|-----------------
+Content-Type	| String	 | Yes	         | Must be application/JSON
+Authorization	| String	 | Yes	         | JSON Web Token
 
 #### Request Body
 Name      |   Type       |   Required      |    Description
 ----------|--------------|-----------------|------------------------------
 Username  |   String     |   Yes           |    Must be unique
 password  |   String     |   Yes           |    Must be unique
-----------|--------------|-----------------|------------------------------
 
 #### Example
 ```
@@ -83,14 +40,19 @@ password  |   String     |   Yes           |    Must be unique
 
 ## Login
 HTTP Method: [POST],
-URL: /api/auth/login
+#### URL: /api/auth/login
+
+#### Headers
+Name	        | Type	     | Required	     | Description
+----------------|------------|---------------|-----------------
+Content-Type	| String	 | Yes	         | Must be application/JSON
+Authorization	| String	 | Yes	         | JSON Web Token
 
 #### Request Body
 Name      |   Type       |    Description
 ----------|--------------|------------------------------
 Username  |   String     | Must match username in database
 password  |   String     | Must match password associated with the username
-----------|--------------||------------------------------
 
 #### Example
 ```
@@ -109,6 +71,27 @@ password  |   String     | Must match password associated with the username
 
 
 ### user, potluck, guest, item
+Table   | Method   | Endpoint                 | Description
+------- |----------|-------------------------|-------------------------------------------------------------
+users   | GET      | /api/users               | gives all teh users
+potluck | POST     | /api/user/:id/potlucks   | creates potluck under the given user id
+potluck | GET      | /api/user/:id/potlucks   | gives all potlucks associated with the given user id
+potluck | GET      | /api/potlucks            | gives all potlucks associated with all user
+potluck | GET      | /api/potlucks/:id        | gives a potluck associated with the given potluck id
+potluck | PUT      | /api/potlucks/:id        | allow edit potluck associated with the given potluck id
+potluck | DELETE   | /api/potlucks/:id        | deletes potluck with the given potluck id
+guest   | GET      | /api/guests              | gives all the guests associated with all users
+guest   | GET      | /api/guests/:id          | gives guest associated with given guest id
+guest   | GET      | /api/potlucks/:id/guests | gives all the guests associated with the given potluck id
+guest   | POST     | /api/potlucks/:id/guests | adds guest under the given potluck id
+guest   | PUT      | /api/guest/:id           | allow edit guest info associated with given guest id
+guest   | DELETE   | /api/guest/:id           | deletes guest associated with given user id
+item    | GET      | /api/items               | gives all the items associated with all users
+item    | GET      | /api/items/:id           | gives item associated with given item id
+item    | GET      | /api/potlucks/:id/items  | gives all the items associated with the given potluck id
+item    | POST     | /api/potlucks/:id/items  | adds item under the given potluck id
+item    | PUT      | /api/item/:id            | allow edit item info associated with given item id
+item    | DELETE   | /api/item/:id            | deletes item associated with given user id
 
 ## user
 HTTP Method: [GET] (allow us to get list of users)
@@ -382,7 +365,7 @@ HTTP Method: [GET] (allow us to get list of users)
     - status code [404] (could not find guest associated with given guest id/ guest id does not exist)
     - status code [500] ( server or database error)
 
-3.  HTTP method: [GET] (gives all the guests associated with teh potluck id)
+3.  HTTP method: [GET] (gives all the guests associated with heh potluck id)
     ##### URL: /api/potlucks/:id/guests
 
     #### Headers (not implemented)
