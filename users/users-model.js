@@ -28,7 +28,7 @@ function findPotlucks(potlucks_id) {
     return db("users as u")
         .join("potluck as p", "p.user_id", "u.id" )
         .select("u.username", "p.name", "p.id", "p.time", "p.date", "p.location")
-        .where("p.id", potlucks_id)
+        .where( "u.id", potlucks_id)
         .orderBy("p.id")
 }
 
