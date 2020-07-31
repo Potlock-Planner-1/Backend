@@ -50,7 +50,7 @@ function findItem(item_id) {
     return db("potluck as p")
         .join("item as i", "i.potluck_id", "p.id" )
         .select("i.id", "p.name", "i.item_name")
-        .where("p.id", item_id)
+        .where("i.id", item_id)
         .orderBy("i.id")
 }
 
@@ -58,7 +58,7 @@ function findGuest(guest_id) {
     return db("potluck as p")
         .join("guest as g", "g.potluck_id", "p.id" )
         .select("g.id","p.name", "g.guest_name")
-        .where("p.id", guest_id)
+        .where("g.id", guest_id)
         .orderBy("g.id")
 }
 
