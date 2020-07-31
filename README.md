@@ -139,6 +139,7 @@ Authorization	| String	 | Yes	         | JSON Web Token
     user_id        | Integer     | No               | Auto assigned
 
     #### example
+    ```
     {
         "id": 4,
         "name": "jane's potluck",
@@ -147,6 +148,7 @@ Authorization	| String	 | Yes	         | JSON Web Token
         "location": "california",
         "user_id": 4
     }
+    ```
 
     #### responses
     - status code [201] (successfully created potluck associated with the user id)
@@ -412,12 +414,13 @@ Authorization	| String	 | Yes	         | JSON Web Token
     potluck_id     | Integer     | No               | Auto assigned
 
     #### example
+    ```
     {
         "id": 18,
         "guest_name": "maria",
         "potluck_id": 5
     }
-
+    ```
     #### responses
     - status code [201] (successfully added guest associated with the potluck id)
     - status code [404] (could not find potluck associated with teh given id)
@@ -614,6 +617,7 @@ Authorization	| String	 | Yes	         | JSON Web Token
         "claimed": 1,
         "potluck_id": 1
     }
+    ```
 
 #### responses
 - status code [200] (item name updated associated with given item id)

@@ -33,9 +33,10 @@ router.get("/:id", (req, res) => {
 
 router.get("/:id/potlucks", (req, res) => {
     const { id } = req.params;
-  
+  console.log(id, "IDIDIDIDIDIDID")
     Users.findPotlucks(id)
     .then(potlucks => {
+        console.log(potlucks, "PPPPPPPPPP")
       if (potlucks.length) {
         res.json(potlucks);
       } else {
@@ -61,15 +62,15 @@ router.post("/", (req, res) => {
 });
 
 router.post("/:id/potlucks", (req, res) => {
-    // const potluckInfo = req.body;
+    const potluckInfo = req.body;
     const { id } = req.params; 
-    req.body.user_id = id
+    potluckInfo.user_id = id
 console.log(req.body, "req.body")
 
     Users.findById(id)
     .then(user => {
       if (user) {
-        Users.addPotlucks(req.body, id)
+        Users.addPotlucks(potluckInfo, id)
         .then(([potluck]) => {
             res.status(201).json({ potluck, message: "potluck has been added"});          
         })

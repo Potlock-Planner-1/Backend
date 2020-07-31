@@ -40,7 +40,7 @@ router.get("/:id/items", (req, res) => {
       if (items.length) {
         res.json(items);
       } else {
-        res.status(404).json({ message: "Could not find items for given scheme" })
+        res.status(404).json({ message: "Could not find items for given potluck Id" })
       }
     })
     .catch(err => {
@@ -56,7 +56,7 @@ router.get("/:id/guests", (req, res) => {
       if (guests.length) {
         res.json(guests);
       } else {
-        res.status(404).json({ message: "Could not find guests for given scheme" })
+        res.status(404).json({ message: "Could not find guests for given potluck Id" })
       }
     })
     .catch(err => {
