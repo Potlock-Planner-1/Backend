@@ -72,7 +72,7 @@ describe("POST /api/auth/register", function() {
     })
 })
 
-describe("POST /api/auth/register", function() {
+describe("POST /api/auth/login", function() {
 
     it("checking 201 response on login", function () {
         return supertest(server)
