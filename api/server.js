@@ -27,9 +27,8 @@ server.use("/api/guests", guestRouter);
 server.get("/", (req, res) => {
   res.json({
     api:
-      "This Is Backend Server and It Is Up And Running............................", 
-      -->:"  ",
-    routes: "/potlucks, /guests, /items, /users",
+      "This Is Backend Server and It Is Up And Running............................",
+    routes: "/api/potlucks, /api/guests, /api/items, /api/users",
   });
 });
 
