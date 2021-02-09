@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
   // here adding code to verify users are logged in
   const token = req.headers.authorization;
   const secret = process.env.JWT_SECRET || "is it secret, is it safe?";
-
+  console.log(token, secret);
   if (token) {
     jwt.verify(token, secret, (err, decodedToken) => {
       if (err) {
