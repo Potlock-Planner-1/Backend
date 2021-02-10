@@ -1,102 +1,106 @@
 exports.up = function (knex) {
-  return knex.schema
-    .createTable("role", (roleTbl) => {
-      roleTbl.increments();
+  return (
+    knex.schema
+      // .createTable("role", (roleTbl) => {
+      //   roleTbl.increments();
 
-      roleTbl.string("name", 128).notNullable().unique();
-    })
+      //   roleTbl.string("name", 128).notNullable().unique();
+      // })
 
-    .createTable("users", (UsersTbl) => {
-      UsersTbl.increments();
+      .createTable("users", (UsersTbl) => {
+        UsersTbl.increments();
 
-      UsersTbl.string("username", 256).notNullable().unique().index();
+        UsersTbl.string("username", 256).notNullable().unique().index();
 
-      UsersTbl.string("password", 256).notNullable();
+        UsersTbl.string("password", 256).notNullable();
 
-      UsersTbl.integer("role_id").unsigned().references("id").inTable("role");
-    })
+        UsersTbl.integer("role_id").unsigned().references("id").inTable("role");
+      })
 
-    .createTable("guest", (guestTbl) => {
-      guestTbl.increments();
+      .createTable("guest", (guestTbl) => {
+        guestTbl.increments();
 
-      guestTbl.string("guest_name", 256).notNullable().unique();
+        guestTbl.string("guest_name", 256).notNullable().unique();
 
-      guestTbl
-        .integer("potluck_id")
-        .unsigned()
-        .references("id")
-        .inTable("potluck")
-        .notNullable()
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
-    })
+        guestTbl.string("email", 256).notNullable().unique();
 
-    .createTable("potluck", (potluckTbl) => {
-      potluckTbl.increments();
+        guestTbl
+          .integer("potluck_id")
+          .unsigned()
+          .references("id")
+          .inTable("potluck")
+          .notNullable()
+          .onUpdate("CASCADE")
+          .onDelete("CASCADE");
+      })
 
-      potluckTbl.string("name", 256).notNullable().unique();
+      .createTable("potluck", (potluckTbl) => {
+        potluckTbl.increments();
 
-      potluckTbl.date("date", 256).notNullable();
+        potluckTbl.string("name", 256).notNullable().unique();
 
-      potluckTbl.time("time", 256).notNullable();
+        potluckTbl.date("date", 256).notNullable();
 
-      potluckTbl.string("location", 256).notNullable();
+        potluckTbl.time("time", 256).notNullable();
 
-      potluckTbl
-        .integer("user_id")
-        .unsigned()
-        .references("id")
-        .inTable("users")
-        .notNullable()
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
-    })
+        potluckTbl.string("location", 256).notNullable();
 
-    .createTable("item", (itemTbl) => {
-      itemTbl.increments();
+        potluckTbl
+          .integer("user_id")
+          .unsigned()
+          .references("id")
+          .inTable("users")
+          .notNullable()
+          .onUpdate("CASCADE")
+          .onDelete("CASCADE");
+      })
 
-      itemTbl.string("item_name", 256).notNullable();
+      .createTable("item", (itemTbl) => {
+        itemTbl.increments();
 
-      itemTbl.integer("claimed").notNullable();
+        itemTbl.string("item_name", 256).notNullable();
 
-      itemTbl
-        .integer("potluck_id")
-        .unsigned()
-        .references("id")
-        .inTable("potluck")
-        .notNullable()
-        .onUpdate("CASCADE")
-        .onDelete("RESTRICT");
-    })
+        itemTbl.integer("claimed").notNullable();
 
-    .createTable("linked", (linkedTbl) => {
-      linkedTbl
-        .integer("item_id")
-        .unsigned()
-        .references("id")
-        .inTable("item")
-        .notNullable()
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
+        itemTbl
+          .integer("potluck_id")
+          .unsigned()
+          .references("id")
+          .inTable("potluck")
+          .notNullable()
+          .onUpdate("CASCADE")
+          .onDelete("RESTRICT");
+      })
 
-      linkedTbl
-        .integer("user_id")
-        .unsigned()
-        .references("id")
-        .inTable("users")
-        .notNullable()
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
+      .createTable("linked", (linkedTbl) => {
+        linkedTbl
+          .integer("item_id")
+          .unsigned()
+          .references("id")
+          .inTable("item")
+          .notNullable()
+          .onUpdate("CASCADE")
+          .onDelete("CASCADE");
 
-      linkedTbl
-        .integer("potluck_id")
-        .unsigned()
-        .references("id")
-        .inTable("potluck")
-        .notNullable()
-        .onUpdate("CASCADE")
-        .onDelete("CASCADE");
-    });
+        linkedTbl
+          .integer("user_id")
+          .unsigned()
+          .references("id")
+          .inTable("users")
+          .notNullable()
+          .onUpdate("CASCADE")
+          .onDelete("CASCADE");
+
+        linkedTbl
+          .integer("potluck_id")
+          .unsigned()
+          .references("id")
+          .inTable("potluck")
+          .notNullable()
+          .onUpdate("CASCADE")
+          .onDelete("CASCADE");
+      })
+  );
 };
 
 exports.down = function (knex) {
