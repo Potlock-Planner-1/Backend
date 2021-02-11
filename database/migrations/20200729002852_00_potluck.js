@@ -14,7 +14,7 @@ exports.up = function (knex) {
 
         UsersTbl.string("password", 256).notNullable();
 
-        UsersTbl.integer("role_id").unsigned().references("id").inTable("role");
+        // UsersTbl.integer("role_id").unsigned().references("id").inTable("role");
       })
 
       .createTable("guest", (guestTbl) => {
@@ -22,7 +22,7 @@ exports.up = function (knex) {
 
         guestTbl.string("guest_name", 256).notNullable().unique();
 
-        guestTbl.string("email", 256).notNullable().unique();
+        guestTbl.string("email", 256).notNullable();
 
         guestTbl
           .integer("potluck_id")
