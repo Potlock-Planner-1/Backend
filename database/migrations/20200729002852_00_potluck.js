@@ -20,7 +20,7 @@ exports.up = function (knex) {
       .createTable("guest", (guestTbl) => {
         guestTbl.increments();
 
-        guestTbl.string("guest_name", 256).notNullable().unique();
+        guestTbl.string("guest_name", 256).notNullable();
 
         guestTbl.string("email", 256).notNullable();
 
