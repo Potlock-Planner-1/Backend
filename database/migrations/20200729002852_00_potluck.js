@@ -72,45 +72,47 @@ exports.up = function (knex) {
           .onDelete("RESTRICT");
       })
 
-      .createTable("linked", (linkedTbl) => {
-        linkedTbl
-          .integer("item_id")
-          .unsigned()
-          .references("id")
-          .inTable("item")
-          .notNullable()
-          .onUpdate("CASCADE")
-          .onDelete("CASCADE");
+    // .createTable("linked", (linkedTbl) => {
+    //   linkedTbl
+    //     .integer("item_id")
+    //     .unsigned()
+    //     .references("id")
+    //     .inTable("item")
+    //     .notNullable()
+    //     .onUpdate("CASCADE")
+    //     .onDelete("CASCADE");
 
-        linkedTbl
-          .integer("user_id")
-          .unsigned()
-          .references("id")
-          .inTable("users")
-          .notNullable()
-          .onUpdate("CASCADE")
-          .onDelete("CASCADE");
+    //   linkedTbl
+    //     .integer("user_id")
+    //     .unsigned()
+    //     .references("id")
+    //     .inTable("users")
+    //     .notNullable()
+    //     .onUpdate("CASCADE")
+    //     .onDelete("CASCADE");
 
-        linkedTbl
-          .integer("potluck_id")
-          .unsigned()
-          .references("id")
-          .inTable("potluck")
-          .notNullable()
-          .onUpdate("CASCADE")
-          .onDelete("CASCADE");
-      })
+    //   linkedTbl
+    //     .integer("potluck_id")
+    //     .unsigned()
+    //     .references("id")
+    //     .inTable("potluck")
+    //     .notNullable()
+    //     .onUpdate("CASCADE")
+    //     .onDelete("CASCADE");
+    // })
   );
 };
 
 exports.down = function (knex) {
-  return knex.schema
-    .dropTableIfExists("linked")
-    .dropTableIfExists("item")
-    .dropTableIfExists("potluck")
-    .dropTableIfExists("guest")
-    .dropTableIfExists("users")
-    .dropTableIfExists("roles");
+  return (
+    knex.schema
+      // .dropTableIfExists("linked")
+      .dropTableIfExists("item")
+      .dropTableIfExists("potluck")
+      .dropTableIfExists("guest")
+      .dropTableIfExists("users")
+      .dropTableIfExists("roles")
+  );
 };
 
 //   .createTable('linkedTable', function (table) {
