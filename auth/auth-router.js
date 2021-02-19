@@ -25,7 +25,10 @@ router.post("/register", (req, res) => {
         res.status(201).json({ data: user, token });
       })
       .catch((error) => {
-        res.status(500).json({ message: error.message });
+        // res.status(500).json({ message: error.message });
+        res.status(500).json({
+          message: "Username already exist, Please choose different Username",
+        });
       });
   } else {
     res.status(400).json({
@@ -48,12 +51,10 @@ router.post("/login", (req, res) => {
 
           res.status(200).json({ message: "Welcome to our API", token });
         } else {
-          res
-            .status(401)
-            .json({
-              message:
-                "Invalid Username or Password! Please Enter Correct Username/Password",
-            });
+          res.status(401).json({
+            message:
+              "Invalid Username or Password! Please Enter Correct Username/Password",
+          });
         }
       })
       .catch((error) => {
