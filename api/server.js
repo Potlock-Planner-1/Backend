@@ -9,7 +9,7 @@ const potluckRouter = require("../users/potluck-router.js");
 const itemRouter = require("../users/items-router.js");
 const guestRouter = require("../users/guests-router.js");
 
-const authenticate = require("../auth/authenticate-middleware.js");
+const { authenticate } = require("../auth/authenticate-middleware.js");
 
 const server = express();
 
@@ -25,6 +25,8 @@ server.use("/api/items", itemRouter);
 server.use("/api/guests", guestRouter);
 
 server.get("/", (req, res) => {
+  // const userId = req.body.user.id;
+  console.log(req.body, "IDIDIDIDIDIDIDIDIDIDIDIDI");
   res.json({
     api:
       "This Is Backend Server and It Is Up And Running............................",

@@ -55,7 +55,14 @@ function findItem(item_id) {
 function findGuest(guest_id) {
   return db("potluck as p")
     .join("guest as g", "g.potluck_id", "p.id")
-    .select("g.id", "g.email", "g.guest_name")
+    .select(
+      "g.id",
+      "g.email",
+      "g.guest_name",
+      "g.role_name",
+      "g.potluck_id",
+      "g.user_id"
+    )
     .where("p.id", guest_id)
     .orderBy("g.id");
 }

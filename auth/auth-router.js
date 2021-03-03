@@ -27,7 +27,7 @@ router.post("/register", (req, res) => {
       .catch((error) => {
         // res.status(500).json({ message: error.message });
         res.status(500).json({
-          message: "Username already exists, Please choose different Username",
+          message: "Username Already Exists, Please Choose Different Username",
         });
       });
   } else {
@@ -45,11 +45,21 @@ router.post("/login", (req, res) => {
     Users.findBy({ username: username })
       .then(([user]) => {
         console.log("user", user);
+        const role_name = user.role_name;
+        // console.log(role_name, "ROLE-NAME");
+        const user_id = user.id;
+
         // compare the password the hash stored in the database
         if (user && bcryptjs.compareSync(password, user.password)) {
           const token = makeJwt(user);
 
-          res.status(200).json({ message: "Welcome to our API", token });
+          res.status(200).json({
+            message: "Welcome to our API",
+            token,
+            username,
+            role_name,
+            user_id,
+          });
         } else {
           res.status(401).json({
             message:
@@ -58,7 +68,10 @@ router.post("/login", (req, res) => {
         }
       })
       .catch((error) => {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({
+          message:
+            "Invalid Username or Password! Please Enter Correct Username/Password",
+        });
       });
   } else {
     res.status(400).json({
@@ -72,7 +85,7 @@ function makeJwt(user) {
   const payload = {
     subject: user.id,
     username: user.username,
-    role: user.role,
+    role_name: user.role_name,
   };
 
   const secret = process.env.JWT_SECRET || "is it secret, is it safe?";

@@ -2,7 +2,7 @@
 
 const jwt = require("jsonwebtoken");
 
-module.exports = (req, res, next) => {
+function authenticate(req, res, next) {
   // here adding code to verify users are logged in
   const token = req.headers.authorization;
   const secret = process.env.JWT_SECRET || "is it secret, is it safe?";
@@ -24,4 +24,8 @@ module.exports = (req, res, next) => {
       .status(401)
       .json({ you: "Oops!!!, You need to Log In to access the data" });
   }
+}
+
+module.exports = {
+  authenticate,
 };
