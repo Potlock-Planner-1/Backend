@@ -35,7 +35,7 @@ router.get("/:id/potlucks", (req, res) => {
   // console.log(id, "IDIDIDIDIDIDID");
   Users.findPotlucks(id)
     .then((potlucks) => {
-      console.log(potlucks, "PPPPPPPPPP");
+      // console.log(potlucks, "PPPPPPPPPP");
       if (potlucks.length) {
         res.json(potlucks);
       } else {
@@ -66,7 +66,7 @@ router.post("/:id/potlucks", (req, res) => {
   const potluckInfo = req.body;
   const { id } = req.params;
   potluckInfo.user_id = id;
-  // console.log(req.body, "req.body");
+  // console.log(req.body, id, potluckInfo, "req.body");
 
   Users.findById(id)
     .then((user) => {
