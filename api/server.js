@@ -28,9 +28,11 @@ server.get("/", (req, res) => {
   // const userId = req.body.user.id;
   console.log(req.body, "IDIDIDIDIDIDIDIDIDIDIDIDI");
   res.json({
-    api:
+    Api:
       "This Is Backend Server and It Is Up And Running............................",
-    routes: "/api/potlucks, /api/guests, /api/items, /api/users",
+    Routes: "/api/potlucks, /api/guests, /api/items, /api/users",
+    Try:
+      "https://potluckplanner1.herokuapp.com/api/guests, https://potluckplanner1.herokuapp.com/api/items",
   });
 });
 
