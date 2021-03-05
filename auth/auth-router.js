@@ -4,12 +4,12 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const Users = require("./auth-model.js");
-const { isValid, doesHaveAdminCode } = require("./auth-service.js");
+const { isValid } = require("./auth-service.js");
 
 router.post("/register", (req, res) => {
   const credentials = req.body;
 
-  if (isValid(credentials) && doesHaveAdminCode("potluckPlanner")) {
+  if (isValid(credentials) && credentials.admin_code == "potluckPlanner") {
     const rounds = process.env.BCRYPT_ROUNDS || 8;
 
     // here hashing  the password
