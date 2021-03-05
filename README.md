@@ -22,13 +22,24 @@ Authorization	| String	 | Yes	         | JSON Web Token
 Name      |   Type       |   Required      |    Description
 ----------|--------------|-----------------|------------------------------
 Username  |   String     |   Yes           |    Must be unique
-password  |   String     |   Yes           |    Must be unique
+Password  |   String     |   Yes           |    Must be unique
+Role Name |   String     |   Yes           |    must have role as admin/organizer/guest
+Admin Code|   String     |   Yes if Admin  |    must have admin code
 
 #### Example
 ```
+If Organizer or Guest
     {
         "username": "one",
         "password": "one"
+        "role_name": "organizer"/"guest"
+    }
+If Admin
+    {
+        "username": "one",
+        "password": "one"
+        "role": "admin"
+        "admin_code: "Provided admin code"
     }
 
 
