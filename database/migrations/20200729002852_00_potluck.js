@@ -18,7 +18,6 @@ exports.up = function (knex) {
         .references("role_name")
         .inTable("role")
         .notNullable();
-      UsersTbl.string("admin_code", 256);
     })
 
     .createTable("guest", (guestTbl) => {

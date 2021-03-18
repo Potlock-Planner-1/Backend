@@ -11,35 +11,30 @@ exports.seed = function (knex) {
           password:
             "$2a$08$i4aIo2VfB6TsFT.i455R4OTZP23cIcClQU04rIrSNz/Bwxwh2T2lW",
           role_name: "organizer",
-          admin_code: null,
         },
         {
           username: "marina martinez",
           password:
             "$2a$08$i4aIo2VfB6TsFT.i455R4OTZP23cIcClQU04rIrSNz/Bwxwh2T2lW",
           role_name: "organizer",
-          admin_code: null,
         },
         {
           username: "mars mandes",
           password:
             "$2a$08$i4aIo2VfB6TsFT.i455R4OTZP23cIcClQU04rIrSNz/Bwxwh2T2lW",
           role_name: "organizer",
-          admin_code: null,
         },
         {
           username: "parimala vemula",
           password:
             "$2a$08$i4aIo2VfB6TsFT.i455R4OTZP23cIcClQU04rIrSNz/Bwxwh2T2lW",
           role_name: "organizer",
-          admin_code: null,
         },
         {
           username: "prakash singh",
           password:
             "$2a$08$i4aIo2VfB6TsFT.i455R4OTZP23cIcClQU04rIrSNz/Bwxwh2T2lW",
           role_name: "admin",
-          admin_code: "potluckPlanner",
         },
       ]);
     });

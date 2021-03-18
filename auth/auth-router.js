@@ -9,7 +9,7 @@ const { isValid } = require("./auth-service.js");
 router.post("/register", (req, res) => {
   const credentials = req.body;
 
-  if (isValid(credentials) && credentials.admin_code == "potluckPlanner") {
+  if (isValid(credentials)) {
     const rounds = process.env.BCRYPT_ROUNDS || 8;
 
     // here hashing  the password
@@ -32,7 +32,8 @@ router.post("/register", (req, res) => {
       });
   } else {
     res.status(400).json({
-      message: "Please provide your 'CORRECT ADMIN CODE'",
+      message:
+        "please provide username and password and the password should be alphanumeric",
     });
   }
 });
